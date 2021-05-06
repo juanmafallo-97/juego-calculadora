@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import OnGame from "./OnGame";
+import React, { useState } from 'react';
+import OnGame from './OnGame';
 
 export default function MainContainer() {
   const [playing, setPlaying] = useState(false);
   return (
-    <div>
+    <div className="main-container">
       {playing ? (
         <div>
           <OnGame />
