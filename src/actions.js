@@ -1,20 +1,26 @@
-export const setResult = (number) => {
+export const setOperation = (operation) => {
   return {
-    type: "result/setResult",
-    payload: number,
+    type: "operation/setOperation",
+    payload: operation,
   };
 };
 
 export const addLevel = () => {
   return {
     type: "level/addLevel",
-    payload: level,
   };
 };
 
 export const addHit = () => {
   return {
     type: "hits/addHit",
+  };
+};
+
+export const setMessage = (message) => {
+  return {
+    type: "message/setMessage",
+    payload: message,
   };
 };
 

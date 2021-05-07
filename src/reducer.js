@@ -1,7 +1,8 @@
 const initialState = {
   level: 0,
-  result: 0,
+  operation: {},
   hits: 0,
+  message: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -15,11 +16,11 @@ const rootReducer = (state = initialState, action) => {
         level: state.level + 1,
       };
 
-    case "result/setResult": {
-      const newResult = action.payload;
+    case "operation/setOperation": {
+      const newOperation = action.payload;
       return {
         ...state,
-        result: newResult,
+        operation: newOperation,
       };
     }
 
@@ -28,6 +29,14 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         hits: state.hit + 1,
       };
+
+    case "message/setMessage":
+      const message = action.payload;
+      return {
+        ...state,
+        message,
+      };
+
     default:
       return state;
   }
