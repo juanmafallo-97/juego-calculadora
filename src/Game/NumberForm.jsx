@@ -1,25 +1,22 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { isCorrectAnswer } from './gameFunctions';
 
-export default function NumberForm({ checkAnswer }) {
-  const [answer, setAnswer] = useState("");
+export default function NumberForm({ onCorrectAnswer, onIncorrectAnswer }) {
+  const [answer, setAnswer] = useState('');
   const operation = useSelector((state) => state.operation);
-  const dispatch = useDispatch();
 
   const onChange = (event) => {
     const value = event.target.value;
     setAnswer(value);
   };
 
-  const verifyAnswer = () => {
-    if (answer == operation.result) console.log("bien!");
-    else console.log("mal :(");
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(answer);
-    checkAnswer(answer);
+    console.log(answer, operation.result);
+    if (isCorrectAnswer(operation, answer)) onCorrectAnswer();
+    else onIncorrectAnswer();
+    setAnswer('');
   };
 
   return (

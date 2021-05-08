@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/timer.css';
 
 const Timer = ({ time }) => {
   return (

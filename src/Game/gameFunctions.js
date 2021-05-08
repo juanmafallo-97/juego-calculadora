@@ -5,7 +5,7 @@ export const generateRandomNumber = (range) => {
 };
 
 const generateRandomOperation = () => {
-  const operationsArray = ["+", "-", "*", "/"];
+  const operationsArray = ['+', '-', '*', '/'];
   const operation =
     operationsArray[Math.floor(Math.random() * operationsArray.length)];
   return operation;
@@ -19,18 +19,18 @@ export const generateRandomResult = (range) => {
   const numB = generateRandomNumber(range);
 
   switch (operation) {
-    case "+":
+    case '+':
       result = numA + numB;
       break;
-    case "-":
+    case '-':
       result = numA - numB;
       break;
-    case "*":
+    case '*':
       result = numA * numB;
       break;
-    case "/": {
+    case '/': {
       if (numB === 0) {
-        operation = "*";
+        operation = '*';
         result = numA * numB;
       }
       //Si el divisor es cero, directamente devolvemos la multiplicacion
@@ -51,23 +51,20 @@ export const generateRandomResult = (range) => {
   };
 };
 
-export const checkResult = (operationObject, answer) => {
-  const result = operationObject.result;
-  if (operationObject.operation === "/") {
+export const isCorrectAnswer = (operationObject, answer) => {
+  const result = Number(operationObject.result);
+  const userAnswer = Number(answer);
+  if (operationObject.operation === '/') {
     //Si es division tenemos que tener en cuenta que el resultado puede tener decimales
     if (Number.isInteger(result)) {
-      if (parseInt(result) === parseInt(answer)) return true;
+      if (parseInt(result) === parseInt(userAnswer)) return true;
       return false;
     } else {
-      if (result === answer) return true;
+      if (result === userAnswer) return true;
       return false;
     }
   } else {
-    if (result === answer) return true;
+    if (result === userAnswer) return true;
     return false;
   }
 };
-
-let number = 3.0;
-if (Number.isInteger(number)) console.log(parseInt(number));
-else console.log(number.toFixed(2));

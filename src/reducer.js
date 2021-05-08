@@ -2,21 +2,21 @@ const initialState = {
   level: 0,
   operation: {},
   hits: 0,
-  message: "",
+  message: '',
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "resetGame":
+    case 'resetGame':
       return initialState;
 
-    case "level/addLevel":
+    case 'level/addLevel':
       return {
         ...state,
         level: state.level + 1,
       };
 
-    case "operation/setOperation": {
+    case 'operation/setOperation': {
       const newOperation = action.payload;
       return {
         ...state,
@@ -24,13 +24,13 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
-    case "hits/addHit":
+    case 'hits/addHit':
       return {
         ...state,
-        hits: state.hit + 1,
+        hits: state.hits + 1,
       };
 
-    case "message/setMessage":
+    case 'message/setMessage':
       const message = action.payload;
       return {
         ...state,
