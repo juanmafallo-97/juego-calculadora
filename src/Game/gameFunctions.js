@@ -21,9 +21,21 @@ const generateRandomOperation = (level) => {
 export const generateRandomResult = (level) => {
   let result;
   let range;
-  if (level <= 3) range = [1, 5];
-  else range = [level - 3, 2 + level];
+  //Vamos a usar un rango para la suma y resta, y otro para la multiplicacion
+  let multAndDivRange;
+  let plusAndMinusRange;
+  if (level <= 3) {
+    multAndDivRange = [2, 5];
+    plusAndMinusRange = [1, 8];
+  } else {
+    multAndDivRange = [level - 3, 2 + level];
+    plusAndMinusRange = [level - 2, 5 + level];
+  }
+
   let operation = generateRandomOperation(level);
+  if (operation === '+' || operation === '-') range = plusAndMinusRange;
+  else range = multAndDivRange;
+
   let numA = generateRandomNumber(range);
   let numB = generateRandomNumber(range);
 

@@ -35,7 +35,7 @@ button {
   border-style: none;
   outline: none;
   border: 2px solid #fff;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 1rem;
   cursor: pointer;
   color: #fff;
@@ -51,14 +51,14 @@ button:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 3rem;
+  padding: 2rem;
   background: rgba(0, 0, 0, 0.75);
   width: 80vw;
 }
 
 .game-description {
   color: #fff;
-  font-size: 4rem;
+  font-size: 3rem;
   margin: 2rem;
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@ button:hover {
 
 .play-btn {
   width: 50%;
-  height: 12rem;
+  height: 11rem;
   font-size: 4rem;
   margin: 2rem;
 }
@@ -84,12 +84,12 @@ button:hover {
 }
 
 .timer-text {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .timer {
   color: #fff;
-  font-size: 5rem;
+  font-size: 4rem;
   padding: 4px;
   animation: pulse 1s infinite;
   text-align: center;
@@ -124,11 +124,11 @@ button:hover {
 
 .status-container {
   color: #fff;
-  font-size: 4rem;
+  font-size: 3.5rem;
   background: rgba(0, 0, 0, 0.3);
-  padding: 2rem;
+  padding: 1rem;
   margin: 1rem;
-  width: 23rem;
+  width: 20rem;
 }
 
 .status {
@@ -140,25 +140,22 @@ button:hover {
 }
 
 .operation {
-  font-size: 5rem;
+  font-size: 4.2rem;
   color: #fff;
 }
 
 .game-form-container {
-  height: 8rem;
-}
-
-.game-form {
+  height: 9rem;
 }
 
 .form-input {
   border-style: none;
   color: #000;
-  font-size: 3rem;
+  font-size: 2.5rem;
   width: auto;
   padding: 0.5rem;
   transition: all 0.4s;
-  margin: 2rem;
+  margin: 1.5rem;
 }
 .form-input:focus {
   outline-style: none;
@@ -166,7 +163,7 @@ button:hover {
 }
 
 .normal-btn {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
 }
 
 .finished-game-container {
@@ -178,5 +175,5 @@ button:hover {
 }
 
 .message {
-  font-size: 4rem;
+  font-size: 3.5rem;
 }
