@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { resetGame } from '../actions';
+import { gameReset } from '../actions';
 import OnGame from './OnGame';
 
 export default function MainContainer() {
@@ -12,8 +12,9 @@ export default function MainContainer() {
         <div>
           <OnGame />
           <button
+            className="normal-btn"
             onClick={() => {
-              dispatch(resetGame());
+              dispatch(gameReset());
               setPlaying(false);
             }}
           >
@@ -21,7 +22,19 @@ export default function MainContainer() {
           </button>
         </div>
       ) : (
-        <button onClick={() => setPlaying(true)}>Jugar!</button>
+        <>
+          <div className="game-description">
+            <p>¡Bienvenido/a!</p>
+            <p>
+              Este es un juego hecho para probar tus conocimientos de
+              matemática. Espero que te acuerdes algo de la secundaria...
+            </p>
+            <p>Ojo que si te va mal le voy a decir a Victor</p>
+          </div>
+          <button onClick={() => setPlaying(true)} className="play-btn">
+            JUGAR!
+          </button>
+        </>
       )}
     </div>
   );

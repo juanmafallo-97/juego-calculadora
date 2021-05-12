@@ -1,62 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Timer from './Timer';
 import { generateRandomResult } from './gameFunctions';
-import {
-  setOperation,
-  addHit,
-  addLevel,
-  setMessage,
-  resetGame,
-} from '../actions';
+import { operationSet, hitAdded, levelAdded, messageSet } from '../actions';
 import DisplayOperation from './DisplayOperation';
 import NumberForm from './NumberForm';
 import Message from './Message';
+import StatusDisplay from './StatusDisplay';
 
 export default function OnGame() {
   const [time, setTime] = useState(10);
-  const [range, setRange] = useState([0, 5]);
   const [finishedGame, setFinishedGame] = useState(false);
   const currentLevel = useSelector((state) => state.level);
   const currentHits = useSelector((state) => state.hits);
   const dispatch = useDispatch();
-
-  let timerInterval;
+  const timerRef = useRef(null);
 
   useEffect(() => {
-    dispatch(setOperation(generateRandomResult(range)));
-    timerInterval = setInterval(() => {
+    dispatch(operationSet(generateRandomResult(currentLevel)));
+    timerRef.current = setInterval(() => {
       setTime((time) => time - 1);
     }, 1000);
     return () => {
-      clearInterval(timerInterval);
+      clearInterval(timerRef.current);
     };
   }, []);
 
   useEffect(() => {
     if (time === 0) {
-      clearInterval(timerInterval);
-      dispatch(setMessage('Se acabó el tiempo!'));
+      clearInterval(timerRef.current);
+      dispatch(messageSet('Se acabó el tiempo!'));
       setFinishedGame(true);
-      console.log(time);
     }
-  });
+  }, [time, dispatch]);
 
   const handleCorrectAnswer = () => {
-    dispatch(addHit());
+    //El nivel sube cada vez que se hacen 3 respuestas correctas seguidas. Por eso lo siguiente:
+    if (currentHits / (currentLevel * 3) === 1) {
+      dispatch(levelAdded());
+    }
+    dispatch(hitAdded());
     setTime(10);
-    dispatch(setOperation(generateRandomResult(range)));
-    dispatch(setMessage('Bien! Se ha generado otra operación'));
+    dispatch(operationSet(generateRandomResult(currentLevel)));
   };
 
   const handleIncorrectAnswer = () => {
-    clearInterval(timerInterval);
+    clearInterval(timerRef.current);
     setFinishedGame(true);
-    dispatch(setMessage('Respuesta incorrecta... Perdiste :('));
-  };
-
-  const playAgain = () => {
-    dispatch(resetGame());
+    dispatch(messageSet('Respuesta incorrecta... Perdiste :('));
   };
 
   return (
@@ -64,7 +55,11 @@ export default function OnGame() {
       {!finishedGame ? (
         <div>
           <Timer time={time} />
-          <span>Aciertos: {currentHits}</span>
+          <div className="game-status">
+            <StatusDisplay status="hits" displayText="Aciertos" />
+            <StatusDisplay status="level" displayText="Nivel" />
+          </div>
+
           <DisplayOperation />
           <NumberForm
             onCorrectAnswer={handleCorrectAnswer}
@@ -72,12 +67,12 @@ export default function OnGame() {
           />
         </div>
       ) : (
-        <div>
-          <h3>Aciertos totales: {currentHits}</h3>
+        <div className="finished-game-container">
+          <Message />
+          <p className="finished-status">Aciertos Totales: {currentHits}</p>
+          <p className="finished-status">Nivel Alcanzado: {currentLevel}</p>
         </div>
       )}
-
-      <Message />
     </div>
   );
 }

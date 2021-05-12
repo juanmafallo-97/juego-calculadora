@@ -13,7 +13,6 @@ export default function NumberForm({ onCorrectAnswer, onIncorrectAnswer }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(answer, operation.result);
     if (isCorrectAnswer(operation, answer)) onCorrectAnswer();
     else onIncorrectAnswer();
     setAnswer('');
@@ -21,10 +20,18 @@ export default function NumberForm({ onCorrectAnswer, onIncorrectAnswer }) {
 
   return (
     <div className="game-form-container">
-      <form className="form-container" onSubmit={handleSubmit}>
-        <label htmlFor="number"></label>
-        <input type="number" name="number" onChange={onChange} value={answer} />
-        <button type="submit">Verificar!</button>
+      <form className="game-form" onSubmit={handleSubmit}>
+        <input
+          className="form-input"
+          type="number"
+          name="number"
+          onChange={onChange}
+          value={answer}
+          placeholder="Su respuesta..."
+        />
+        <button type="submit" className="normal-btn">
+          Verificar!
+        </button>
       </form>
     </div>
   );

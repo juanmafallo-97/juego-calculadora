@@ -4,19 +4,28 @@ export const generateRandomNumber = (range) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-const generateRandomOperation = () => {
-  const operationsArray = ['+', '-', '*', '/'];
-  const operation =
+const generateRandomOperation = (level) => {
+  let operationsArray;
+  let operation;
+
+  if (level === 1) operationsArray = ['+', '-'];
+  if (level === 2 || level === 3) operationsArray = ['+', '-', '*'];
+  if (level > 3) operationsArray = ['+', '-', '*', '/'];
+
+  operation =
     operationsArray[Math.floor(Math.random() * operationsArray.length)];
   return operation;
 };
 
 //Funcion que genera dos numeros y una operacion aleatoria y devuelve un objeto con estos datos
-export const generateRandomResult = (range) => {
+export const generateRandomResult = (level) => {
   let result;
-  let operation = generateRandomOperation();
-  const numA = generateRandomNumber(range);
-  const numB = generateRandomNumber(range);
+  let range;
+  if (level <= 3) range = [1, 5];
+  else range = [level - 3, 2 + level];
+  let operation = generateRandomOperation(level);
+  let numA = generateRandomNumber(range);
+  let numB = generateRandomNumber(range);
 
   switch (operation) {
     case '+':
@@ -29,13 +38,17 @@ export const generateRandomResult = (range) => {
       result = numA * numB;
       break;
     case '/': {
+      //Si el divisor es cero, directamente devolvemos la multiplicacion
       if (numB === 0) {
         operation = '*';
         result = numA * numB;
       }
-      //Si el divisor es cero, directamente devolvemos la multiplicacion
-      else {
-        result = (numA / numB).toFixed(2);
+      //Si la division no es entera buscamos un multiplo comun para que lo sea
+      else if (numA % numB !== 0) {
+        numA = numA * numB;
+        result = numA / numB;
+      } else {
+        result = numA / numB;
       }
       break;
     }

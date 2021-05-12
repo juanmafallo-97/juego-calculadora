@@ -1,31 +1,31 @@
-export const setOperation = (operation) => {
+export const operationSet = (operation) => {
   return {
-    type: "operation/setOperation",
+    type: 'operation/operationSet',
     payload: operation,
   };
 };
 
-export const addLevel = () => {
+export const levelAdded = () => {
   return {
-    type: "level/addLevel",
+    type: 'level/levelAdded',
   };
 };
 
-export const addHit = () => {
+export const hitAdded = () => {
   return {
-    type: "hits/addHit",
+    type: 'hits/hitAdded',
   };
 };
 
-export const setMessage = (message) => {
+export const messageSet = (message) => {
   return {
-    type: "message/setMessage",
+    type: 'message/messageSet',
     payload: message,
   };
 };
 
-export const resetGame = () => {
+export const gameReset = () => {
   return {
-    type: "resetGame",
+    type: 'gameReset',
   };
 };

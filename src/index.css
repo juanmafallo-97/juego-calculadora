@@ -1,27 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Shadows+Into+Light&display=swap');
+
 * {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 2px;
+  color: #fff;
   text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  background: url(./image/math.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-size: 62.5%;
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+div {
+  margin: 1rem;
 }
 
 button {
-  background-color: #fff;
   border-style: none;
   outline: none;
-  border: 2px solid #000;
-  padding: 4px;
+  border: 2px solid #fff;
+  padding: 1rem;
+  margin: 1rem;
   cursor: pointer;
+  color: #fff;
+  background-color: #000;
+  transition: all 0.4s;
+}
+button:hover {
+  transform: scale(1.07);
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3rem;
+  background: rgba(0, 0, 0, 0.75);
+  width: 80vw;
+}
+
+.game-description {
+  color: #fff;
+  font-size: 4rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-btn {
+  width: 50%;
+  height: 12rem;
+  font-size: 4rem;
+  margin: 2rem;
+}
+
+.timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.timer-text {
+  font-size: 4rem;
 }
 
 .timer {
+  color: #fff;
+  font-size: 5rem;
   padding: 4px;
-  width: 50px;
-  height: 50px;
   animation: pulse 1s infinite;
+  text-align: center;
 }
 
 @keyframes pulse {
@@ -38,20 +109,74 @@ button {
   }
 }
 
-.timer-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.main-container {
-  display: flex;
-  justify-content: center;
-}
-
 .ongame-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.game-status {
+  color: #000;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.status-container {
+  color: #fff;
+  font-size: 4rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  margin: 1rem;
+  width: 23rem;
+}
+
+.status {
+  transition: all 0.3s;
+}
+
+.highlight {
+  transform: scale(1.2);
+}
+
+.operation {
+  font-size: 5rem;
+  color: #fff;
+}
+
+.game-form-container {
+  height: 8rem;
+}
+
+.game-form {
+}
+
+.form-input {
+  border-style: none;
+  color: #000;
+  font-size: 3rem;
+  width: auto;
+  padding: 0.5rem;
+  transition: all 0.4s;
+  margin: 2rem;
+}
+.form-input:focus {
+  outline-style: none;
+  transform: scale(1.1);
+}
+
+.normal-btn {
+  font-size: 2.5rem;
+}
+
+.finished-game-container {
+  font-size: 3rem;
+}
+
+.finished-status {
+  margin: 2.5rem;
+}
+
+.message {
+  font-size: 4rem;
 }
